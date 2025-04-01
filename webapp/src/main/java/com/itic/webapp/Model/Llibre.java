@@ -1,70 +1,36 @@
 package com.itic.webapp.Model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "Llibre")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Llibre {
-    private int idLlibre;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_llibre")
+    private Integer idLlibre;
+
+    @NotNull(message = "El título no puede ser nulo")
+    @Column(nullable = false)
     private String titol;
+
     private String autor;
     private String editorial;
-    private String datapublicacio;
+
+    @Column(name = "datapublicacio")
+    private LocalDate dataPublicacio;
+
     private String tematica;
 
-    public Llibre() {
-    }
+    @Column(unique = true, nullable = false)
+    private String isbn;
 
-    public Llibre(int idLlibre, String titol, String autor, String editorial, String datapublicacio, String tematica) {
-        this.idLlibre = idLlibre;
-        this.titol = titol;
-        this.autor = autor;
-        this.editorial = editorial;
-        this.datapublicacio = datapublicacio;
-        this.tematica = tematica;
-    }
-
-    public int getIdLlibre() {
-        return idLlibre;
-    }
-
-    public void setIdLlibre(int idLlibre) {
-        this.idLlibre = idLlibre;
-    }
-
-    public String getTitol() {
-        return titol;
-    }
-
-    public void setTitol(String titol) {
-        this.titol = titol;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public String getEditorial() {
-        return editorial;
-    }
-
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
-    }
-
-    public String getDatapublicacio() {
-        return datapublicacio;
-    }
-
-    public void setDatapublicacio(String datapublicacio) {
-        this.datapublicacio = datapublicacio;
-    }
-
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
-        this.tematica = tematica;
-    }
 }
